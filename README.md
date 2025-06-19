@@ -1,2 +1,2 @@
 # Video Link Generator (Free)
-Wtyczka WordPress – wersja darmowa
+Wtyczka WordPress – wersja darmowa.

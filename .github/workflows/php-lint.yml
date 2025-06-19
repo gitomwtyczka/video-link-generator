@@ -1,0 +1,16 @@
+name: PHP Lint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: PHP Syntax Check
+        run: |
+          php -l video-link-generator.php
+          php -l video-link-generator/video-link-generator.php

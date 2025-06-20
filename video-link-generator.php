@@ -1,21 +1,29 @@
 <?php
-/*
-Plugin Name: Video Link Generator
-Plugin URI: https://wordpress.org/plugins/video-link-generator/
-Description: Darmowa wersja wtyczki do automatycznego tworzenia stron z filmami.
-Version: 1.0.0
-Author: Twoje Imię
-License: GPL2
-*/
+/**
+ * Plugin Name: Video Link Generator
+ * Description: Wersja darmowa – automatyczne generowanie podstron z filmami z YouTube.
+ * Version: 1.5.4
+ * Author: Tomasz Brzozowski
+ */
 
-defined('ABSPATH') or die('No script kiddies please!');
+defined('ABSPATH') || exit;
+define('VIDEO_LINK_GENERATOR_FREE_ACTIVE', true);
 
-if (!defined('VLG_FREE_ACTIVE')) {
-    define('VLG_FREE_ACTIVE', true);
-}
-
-add_action('admin_menu', function() {
-    add_options_page('Video Link Generator', 'Video Link Generator', 'manage_options', 'video-link-generator', function() {
-        echo '<div class="wrap"><h2>Video Link Generator (Free)</h2><p>Działa wtyczka darmowa.</p></div>';
-    });
+// NIE dodawaj panelu, jeśli działa wersja PRO
+add_action('admin_menu', function () {
+    if (defined('VLG_PRO_ACTIVE')) return; // ⛔ PRO aktywna – nie dodawaj strony ustawień
+    add_options_page(
+        'Video Link Generator (Free)',
+        'Video Link Generator (Free)',
+        'manage_options',
+        'vlg-settings-free',
+        'video_link_generator_render_settings_page'
+    );
 });
+
+function video_link_generator_render_settings_page() {
+    echo '<div class="wrap"><h1>Video Link Generator – Ustawienia (Free)</h1>';
+    echo '<p>Ta wersja automatycznie generuje strony z filmami w tle.</p>';
+    echo '</div>';
+}
+?>

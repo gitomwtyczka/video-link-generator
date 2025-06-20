@@ -10,7 +10,9 @@ License: GPL2
 
 defined('ABSPATH') or die('No script kiddies please!');
 
-define('VLG_FREE_ACTIVE', true);
+if (!defined('VLG_FREE_ACTIVE')) {
+    define('VLG_FREE_ACTIVE', true);
+}
 
 add_action('admin_menu', function() {
     add_options_page('Video Link Generator', 'Video Link Generator', 'manage_options', 'video-link-generator', function() {
